@@ -1,0 +1,34 @@
+name: Testes E2E
+
+on: push
+
+jobs:
+  e2e-chrome:
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout do projeto
+      uses: actions/checkout@v1
+    - name: Setup do Node.js
+      uses: actions/setup-node@v1.1.0
+    - name: Instalação das dependências de produção
+      run: npm ci --production
+    - name: Execução dos testes
+      run: npm run test:chrome
+      
+  e2e-firefox:
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout do projeto
+      uses: actions/checkout@v1
+    - name: Setup do Node.js
+      uses: actions/setup-node@v1.1.0
+    - name: Instalação das dependências de produção
+      run: npm ci --production
+    - name: Execução dos testes
+      run: npm run test:firefox

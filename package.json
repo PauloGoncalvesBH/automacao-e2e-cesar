@@ -1,0 +1,47 @@
+{
+  "name": "test_possible",
+  "version": "1.0.0",
+  "description": "Automação para cargo de Engenheiro de Testes na CESAR",
+  "license": "MIT",
+  "author": "Paulo Gonçalves <paulorochag@hotmail.com> (https://www.linkedin.com/in/paulo-goncalves)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PauloGoncalvesBH/automacao-e2e-cesar.git"
+  },
+  "scripts": {
+    "test:chrome": "webdriver-manager update --standalone false --gecko false && protractor e2e/configs/protractorChrome.conf.js",
+    "test:firefox": "webdriver-manager update --standalone false --chrome false && protractor e2e/configs/protractorFirefox.conf.js",
+    "test": "npm run test:chrome && npm run test:firefox",
+    "prettify": "prettier --write **/*.js **/*.json --print-width 120 --single-quote true",
+    "commit": "git-cz"
+  },
+  "dependencies": {
+    "faker": "^4.1.0",
+    "jasmine-spec-reporter": "^4.2.1",
+    "protractor": "^5.4.2",
+    "protractor-helper": "^4.0.12"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
+    "husky": "^4.0.10",
+    "prettier": "^1.19.1"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}
